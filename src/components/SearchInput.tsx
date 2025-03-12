@@ -2,16 +2,16 @@ import { ChangeEvent, memo } from "react";
 
 interface SearchInputProps {
   search: string;
-  onChange: (value: string) => void
+  onChange: (value: string) => void;
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({ search, onChange }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value)
-  }
+    onChange(e.target.value);
+  };
 
   // To test re-rendering (To be removed)
-  console.log("Rendered")
+  console.log("Rendered");
 
   return (
     <>
