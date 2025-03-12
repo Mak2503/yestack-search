@@ -6,12 +6,12 @@
 }
 
 .search-input {
-  padding: 20px;
+  padding: 15px;
   color: #212427;
-  width: 50%;
+  width: 40%;
   border: 1px solid lightgray;
   border-radius: 5px;
-  font-size: 24px;
+  font-size: 21px;
 }
 
 .search-input:focus {
