@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import SearchInput from "./SearchInput";
+import SuggestionBox from "./SuggestionBox";
 
 const Search = () => {
   // const [count, setCount] = useState(0)
@@ -16,6 +17,7 @@ const Search = () => {
         <button onClick={() => setCount(count + 1)}>+</button>
         {count}
       </div> */}
+      <SuggestionBox search={search} />
     </div>
   );
 };
