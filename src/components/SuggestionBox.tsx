@@ -1,4 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
+import { memo } from "react";
+import { Product } from "../types";
 
 interface SuggestionBoxProps {
   search: string
@@ -21,8 +23,18 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({ search }) => {
   if (isPending) return "Loading...";
   if (error) return `An error has occured: ${error.message}`;
 
-  console.log(data);
-  return <div>SuggestionBox</div>;
+  console.log("Search", search)
+
+  return (
+    <div className="suggestion-container">
+      <p>Popular Searches</p>
+      <ul>
+        {data.products.map((product: Product) => (
+          <li key={product.id}>{product.title.slice(0, 40)}...</li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
-export default SuggestionBox;
+export default memo(SuggestionBox);
