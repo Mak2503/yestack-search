@@ -4,3 +4,16 @@
   padding: 2rem;
   text-align: center;
 }
+
+.search-input {
+  padding: 20px;
+  color: #212427;
+  width: 50%;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-size: 24px;
+}
+
+.search-input:focus {
+  outline: none;
+}

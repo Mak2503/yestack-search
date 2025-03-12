@@ -1,7 +1,12 @@
 import "./App.css";
+import SearchInput from "./components/SearchInput";
 
 function App() {
-  return <main>Hello World</main>;
+  return (
+    <main>
+      <SearchInput />
+    </main>
+  );
 }
 
 export default App;
