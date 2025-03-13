@@ -6,9 +6,13 @@ import { useDebounce } from "../hooks/useDebounce";
 
 interface SuggestionDropdownProps {
   query: string;
+  handleProduct: (product: Product) => void;
 }
 
-const SuggestionDropdown: React.FC<SuggestionDropdownProps> = ({ query }) => {
+const SuggestionDropdown: React.FC<SuggestionDropdownProps> = ({
+  query,
+  handleProduct,
+}) => {
   const { ref, inView } = useInView();
   const [page, setPage] = useState(1);
   const debouncedQuery = useDebounce(query, 300);
@@ -77,7 +81,9 @@ const SuggestionDropdown: React.FC<SuggestionDropdownProps> = ({ query }) => {
           ? data.pages.map((page) => (
               <Fragment key={page.nextId}>
                 {page.map((product: Product) => (
-                  <li key={product.id}>{product.title?.slice(0, 70)}...</li>
+                  <li key={product.id} onClick={() => handleProduct(product)}>
+                    {product.title?.slice(0, 70)}...
+                  </li>
                 ))}
               </Fragment>
             ))
