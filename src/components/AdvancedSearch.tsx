@@ -1,12 +1,14 @@
-import { useCallback, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import SearchInput from "./SearchInput";
 import SuggestionDropdown from "./SuggestionDropdown";
 import ProductCard from "./ProductCard";
 import { Product } from "../types";
 
-const Search = () => {
+const AdvancedSearch = () => {
   const [search, setSearch] = useState("");
   const [product, setProduct] = useState<Product | null>(null);
+  const [isFocused, setIsFocused] = useState(false); // To track focus state
+
   const handleSearch = useCallback((value: string) => {
     setSearch(value);
   }, []);
@@ -15,16 +17,35 @@ const Search = () => {
     setProduct(product);
   }, []);
 
+  const handleFocus = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+
+  const handleBlur = useCallback(() => {
+    setIsFocused(false);
+    setSearch("");
+  }, []);
+
+  console.log("Product", product)
+
   return (
     <div className="container">
-      <SearchInput search={search} onChange={handleSearch} />
-      <SuggestionDropdown
-        query={search.toLowerCase().trim()}
-        handleProduct={handleProductSelect}
+      <SearchInput
+        search={search}
+        onChange={handleSearch}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
+      {isFocused && (
+        <SuggestionDropdown
+          query={search.toLowerCase().trim()}
+          handleProduct={handleProductSelect}
+          handleBlur={handleBlur}
+        />
+      )}
       {product && <ProductCard product={product} />}
     </div>
   );
 };
 
-export default Search;
+export default memo(AdvancedSearch);
