@@ -55,20 +55,20 @@ const SuggestionDropdown: React.FC<SuggestionDropdownProps> = ({
   if ((status as "idle" | "pending" | "success" | "error") === "pending")
     return (
       <div className="suggestion-container">
-        <p style={{ margin: "15px" }}>Loading...</p>
+        <p className="subText">Loading...</p>
       </div>
     );
   if (status === "error" || error) {
     return (
       <div className="suggestion-container">
-        <p style={{ margin: "15px" }}>An error has occured: ${error.message}</p>
+        <p className="subText">An error has occured: ${error.message}</p>
       </div>
     );
   }
-  if (!data || data.pages.length === 0) {
+  if (!data || data.pages.length === 0 || data.pages[0].length === 0) {
     return (
       <div className="suggestion-container">
-        <p style={{ margin: "15px" }}>No results found</p>
+        <p className="subText">No results found</p>
       </div>
     );
   }
@@ -91,7 +91,8 @@ const SuggestionDropdown: React.FC<SuggestionDropdownProps> = ({
         {query && (
           <li
             ref={ref}
-            style={{ fontSize: 12, fontWeight: "bold", fontStyle: "italic" }}
+            className="subText"
+            style={{ marginLeft: 0 }}
           >
             {isFetchingNextPage ? "Loading more..." : "Nothing more to load"}
           </li>
