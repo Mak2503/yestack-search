@@ -1,5 +1,5 @@
 import { memo, useCallback, useState } from "react";
-import SearchInput from "./SearchInput";
+import Input from "./Input";
 import SuggestionDropdown from "./SuggestionDropdown";
 import ProductCard from "./ProductCard";
 import { Product } from "../types";
@@ -30,8 +30,8 @@ const AdvancedSearch = () => {
 
   return (
     <div className="container">
-      <SearchInput
-        search={search}
+      <Input
+        value={search}
         onChange={handleSearch}
         onFocus={handleFocus}
         onBlur={handleBlur}

@@ -1,14 +1,14 @@
 import { ChangeEvent, memo, useRef } from "react";
 
-interface SearchInputProps {
-  search: string;
+interface InputProps {
+  value: string;
   onChange: (value: string) => void;
   onFocus?: () => void;
   onBlur?: () => void;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({
-  search,
+const Input: React.FC<InputProps> = ({
+  value,
   onChange,
   onFocus,
   onBlur,
@@ -28,13 +28,13 @@ const SearchInput: React.FC<SearchInputProps> = ({
   return (
     <input
       ref={inputRef}
-      className="search-input"
+      className="input"
       type="text"
-      value={search}
+      value={value}
       onKeyDown={handleKeyDown}
       onChange={handleChange}
       onFocus={onFocus}
     />
   );
 };
-export default memo(SearchInput);
+export default memo(Input);

@@ -10,7 +10,7 @@
   position: relative;
 }
 
-.search-input {
+.input {
   padding: 15px;
   color: #212427;
   width: 100%;
@@ -20,7 +20,7 @@
   margin-bottom: 5px;
 }
 
-.search-input:focus {
+.input:focus {
   outline: none;
 }
 
