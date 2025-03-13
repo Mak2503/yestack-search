@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import SearchInput from "./SearchInput";
-import SuggestionBox from "./SuggestionBox";
+import SuggestionDropdown from "./SuggestionDropdown";
 
 const Search = () => {
   // const [count, setCount] = useState(0)
@@ -10,14 +10,14 @@ const Search = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <SearchInput search={search} onChange={handleSearch} />
       {/* To test re rendering of search (To be removed) */}
       {/* <div>
         <button onClick={() => setCount(count + 1)}>+</button>
         {count}
       </div> */}
-      <SuggestionBox search={search} />
+      <SuggestionDropdown search={search.toLowerCase().trim()} />
     </div>
   );
 };

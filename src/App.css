@@ -1,19 +1,52 @@
 #root {
   max-width: 1280px;
+  width: 40%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
+.container {
+  position: relative;
+}
+
 .search-input {
   padding: 15px;
   color: #212427;
-  width: 40%;
+  width: 100%;
   border: 1px solid lightgray;
   border-radius: 5px;
   font-size: 21px;
+  margin-bottom: 5px;
 }
 
 .search-input:focus {
   outline: none;
+}
+
+.suggestion-container {
+  position: absolute;
+  top: 60px;
+  z-index: 10;
+  /* width: 100%; */
+  text-align: left;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  max-height: 20rem;
+  overflow-y: scroll;
+}
+
+.suggestion-container ul {
+  padding: 0;
+}
+
+.suggestion-container ul li {
+  padding: 10px 15px;
+  list-style-type: none;
+}
+
+.suggestion-container ul li:hover {
+  cursor: pointer;
+  transition: 0.3s ease;
+  background-color: lightblue;
 }

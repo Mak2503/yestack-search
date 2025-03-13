@@ -1,35 +1,40 @@
 import { useQuery } from "@tanstack/react-query";
 import { memo } from "react";
 import { Product } from "../types";
+import { useDebounce } from "../hooks/useDebounce";
 
 interface SuggestionBoxProps {
   search: string
 }
 
 const SuggestionBox: React.FC<SuggestionBoxProps> = ({ search }) => {
-  const fetchProducts = async () => {
+  const debouncedQuery = useDebounce(search, 300);
+  
+  const fetchProducts = async ({ queryKey }: { queryKey: string[] }) => {
+    const [, query] = queryKey;
     const response = await fetch(
-      `http://fakestoreapi.in/api/products?limit=15`
+      `https://fakestoreapi.in/api/products`
     );
     const data = await response.json();
-    return data;
+    const filteredData = data.products.filter((product: Product) => {
+      return product.title.toLowerCase().includes(query);
+    });
+    return filteredData;
   };
 
   const { data, isPending, error } = useQuery({
-    queryKey: ["productsData"],
+    queryKey: ["productsData", debouncedQuery],
     queryFn: fetchProducts,
   });
 
   if (isPending) return "Loading...";
   if (error) return `An error has occured: ${error.message}`;
 
-  console.log("Search", search)
-
   return (
     <div className="suggestion-container">
-      <p>Popular Searches</p>
+      <h5 style={{ marginLeft: "15px" }}>Popular Searches</h5>
       <ul>
-        {data.products.map((product: Product) => (
+        {data.map((product: Product) => (
           <li key={product.id}>{product.title.slice(0, 40)}...</li>
         ))}
       </ul>
